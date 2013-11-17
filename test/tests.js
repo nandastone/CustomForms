@@ -415,7 +415,7 @@
         notStrictEqual(customEl.length, 0,
             'When initializing customEl must be a valid html element.');
 
-        // input should now be inside the custom container 
+        // input should now be inside the custom container
         strictEqual(input.parent()[0], customElContainer[0],
             'When initialized select should be now instide of custom container.');
         // input next sibbling should be custom element

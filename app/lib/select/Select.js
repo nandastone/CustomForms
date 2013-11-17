@@ -14,7 +14,7 @@
          * @memberof customformsjs.module.Select
          */
         DEFAULTS = {
-            active: false,
+            active: true,
             ready: function() {},
             customEle: 'a',
             containerEle: 'div',

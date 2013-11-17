@@ -38,7 +38,9 @@
                 filter: 'alpha(opacity=0)',
                 position: 'absolute',
                 top: '0px',
-                left: '0px', '-moz-opacity': '0', '-khtml-opacity': '0'
+                left: '0px',
+                '-moz-opacity': '0',
+                '-khtml-opacity': '0'
             },
             elCss: {
                 display: "block",
@@ -54,10 +56,8 @@
                 'white-space': "nowrap",
                 'text-overflow': "ellipsis"
             },
-            customListCss: {
-            },
-            customListItemCss: {
-            }
+            customListCss: {},
+            customListItemCss: {}
         };
 
 
@@ -118,7 +118,8 @@
             $customEl = null,
             $customContainer = null,
             $customList = null,
-            _id = DEFAULTS.classPrefix + ($el.attr('id') || $el.attr('name')), _class = DEFAULTS.classPrefix + 'choice',
+            _id = DEFAULTS.classPrefix + ($el.attr('id') || $el.attr('name')),
+            _class = DEFAULTS.classPrefix + 'choice',
             _containerClass = _class + '-container',
 
             attachEvents = function() {
@@ -128,17 +129,17 @@
                     $customContainer.addClass("focus");
                 })
                     .focusout(function() {
-                    $customContainer.removeClass("focus");
-                })
+                        $customContainer.removeClass("focus");
+                    })
                     .change(function() {
-                    instance.validate();
-                });
+                        instance.validate();
+                    });
 
 
                 $customContainer.click(function(e) {
                     e.preventDefault();
                     $customList.toggleClass("open");
-                })
+                });
 
                 $listItems.click(function() {
                     $listItems.removeClass("selected");
@@ -163,7 +164,7 @@
              */
             SETTINGS.init = function() {
                 // hide element
-                if(SETTINGS.autoHide) {
+                if (SETTINGS.autoHide) {
                     $el.css(DEFAULTS.hideCss);
                 }
 
