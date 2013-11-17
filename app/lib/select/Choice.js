@@ -1,3 +1,16 @@
+/**
+ *
+ * TODO:
+ *
+ * Add support for arrow movement.
+ * Add support for going to option based on character pressed.
+ * Add only crucial styles on the defaults and the rest on the main.css
+ * Write unit tests.
+ * Make container close on bur, and fix minor bugs
+ * Clean up and refactor.
+ * Write documentation.
+ *
+ */
 (function(global) {
 
     "use strict";
@@ -18,16 +31,14 @@
             ready: function() {},
             customEle: 'a',
             containerEle: 'div',
-            autoHide: true,
+            autoHide: false,
             classPrefix: 'custom-',
             hideCss: {
                 opacity: '0',
                 filter: 'alpha(opacity=0)',
                 position: 'absolute',
                 top: '0px',
-                left: '0px',
-                '-moz-opacity': '0',
-                '-khtml-opacity': '0'
+                left: '0px', '-moz-opacity': '0', '-khtml-opacity': '0'
             },
             elCss: {
                 display: "block",
@@ -42,6 +53,10 @@
                 overflow: "hidden",
                 'white-space': "nowrap",
                 'text-overflow': "ellipsis"
+            },
+            customListCss: {
+            },
+            customListItemCss: {
             }
         };
 
@@ -102,24 +117,35 @@
             $el = $(SETTINGS.element),
             $customEl = null,
             $customContainer = null,
-            _id = DEFAULTS.classPrefix + ($el.attr('id') || $el.attr('name')),
-            _class = DEFAULTS.classPrefix + 'choice',
+            $customList = null,
+            _id = DEFAULTS.classPrefix + ($el.attr('id') || $el.attr('name')), _class = DEFAULTS.classPrefix + 'choice',
             _containerClass = _class + '-container',
-            _size = {
-                width: 0,
-                height: 0
-            },
 
             attachEvents = function() {
-                //$el.focusin(function() {
-                //    $customContainer.addClass("focus");
-                //})
-                //    .focusout(function() {
-                //    $customContainer.removeClass("focus");
-                //})
-                //    .change(function() {
-                //    instance.validate();
-                //});
+                var $listItems = $customList.find("li");
+
+                $el.focusin(function() {
+                    $customContainer.addClass("focus");
+                })
+                    .focusout(function() {
+                    $customContainer.removeClass("focus");
+                })
+                    .change(function() {
+                    instance.validate();
+                });
+
+
+                $customContainer.click(function(e) {
+                    e.preventDefault();
+                    $customList.toggleClass("open");
+                })
+
+                $listItems.click(function() {
+                    $listItems.removeClass("selected");
+                    $(this).addClass("selected");
+
+                    instance.validate();
+                });
             };
 
         if (SETTINGS.active) {
@@ -137,7 +163,9 @@
              */
             SETTINGS.init = function() {
                 // hide element
-                $el.css(DEFAULTS.hideCss);
+                if(SETTINGS.autoHide) {
+                    $el.css(DEFAULTS.hideCss);
+                }
 
                 // create custom element
                 $customContainer = $("<" + SETTINGS.containerEle + "/>");
@@ -169,9 +197,25 @@
 
                 // TODO: Create a list ul and append before $customEl with li matching the options on the select
                 // While doing that check for property 'selected' and 'value' and 'disabled' and do similar iplementation on those
+                $customList = $("<ul />");
+                $customList.css(SETTINGS.customListCss);
 
-                // we than extend elCss with the dimensions and apply them to element.
-                $el.css($.extend({}, SETTINGS.elCss, _size));
+                $el.find('option').each(function() {
+                    var $customListItem = $("<li />"),
+                        $option = $(this);
+
+
+                    if ($el.val() === $option.val()) {
+                        $customEl.html($option.html());
+                        $customListItem.addClass("selected");
+                    }
+
+                    $customListItem.html($option.html()).attr("customValue", $option.val());
+                    $customListItem.css(SETTINGS.customListItemCss);
+                    $customList.append($customListItem);
+                });
+
+                $customContainer.append($customList);
 
                 SETTINGS.ready();
             };
@@ -186,11 +230,11 @@
              * @memberof customformsjs.module.Choice
              */
             instance.bind('validate', function() {
-                //var _selectedText = $el.find('option:selected').text();
+                var _selected = $customList.find('.selected'),
+                    _selectedText = _selected.text() || $el.find('option').first().text();
 
-                //_selectedText = _selectedText || $el.find('option').first().text();
-
-                //$customEl.html(_selectedText);
+                $customEl.html(_selectedText);
+                $el.val(_selected.attr('customValue'));
             });
 
             instance.validate();
@@ -209,7 +253,12 @@
      * @memberof customformsjs.module.Choice
      */
     module.Choice.blueprint = {
-        tagName: 'select'
+        tagName: 'select',
+        filter: {
+            select: {
+                customType: 'list-select'
+            }
+        }
     };
 
 }(this));

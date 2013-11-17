@@ -9,7 +9,7 @@
   <h1>CustomForms</h1>
   <h2>“Web forms done right”</h2>
 
-	<form action="" method="post">
+	<form id="basic" action="" method="post">
 
 		<label for="pholder">X Browser Placeholders:</label>
 		<input type="text" name="pholder"  placeholder="Placeholder.." value="" />
@@ -62,21 +62,51 @@
 
     </div>
 
-		
+
 	</form>
+
+	<form id="advanced" action="" method="post">
+    <p><strong>Advanced modules</strong></p>
+
+    <hr />
+
+		<label for="selectbox">Custom Select: </label>
+		<select customType="list-select" name="choicebox" id="choicebox">
+			<option>select..</option>
+			<option name="o1" value="1">option 1</option>
+			<option name="o2" value="2">option 2</option>
+			<option name="o3" value="3">option 3</option>
+			<option name="o4" value="4">option 4</option>
+		</select>
+
+  </form>
 
   <script src="vendor.js"></script>
   <!-- <script src="customForms-min.js"></script> -->
   <script src="../customforms.js"></script>
-  <script> $(document).ready(function() { $('form').cstmForm({ 
-    active: 1,
-    text: {
-      force: true,
-      'blur_color': 'red'
-    },
-    file: {
-      holderTxt: "something.."
-    }
-  }); }); </script>
+  <script>
+    $(document).ready(function() {
+
+      // Enable all basic modules, with some settings
+      $('#basic').cstmForm({
+        active: true,
+        text: {
+          force: true,
+          'blur_color': 'red'
+        },
+        file: {
+          holderTxt: "something.."
+        }
+      });
+
+      // Enable advanced modules
+      $('#advanced').cstmForm({
+          choice: {
+            active: true
+          }
+      });
+
+    });
+  </script>
 </body>
 </html>
