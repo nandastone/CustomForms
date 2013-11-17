@@ -24,16 +24,16 @@
         "test": "grunt test"
     },
     "devDependencies": {
-        "grunt": "~0.4.1",
-        "grunt-contrib-jshint": "~0.1.1",
-        "grunt-contrib-concat": "~0.1.2",
-        "grunt-contrib-nodeunit": "~0.1.2",
-        "grunt-contrib-uglify": "~0.1.1",
-        "grunt-contrib-watch": "~0.2.0",
-        "grunt-contrib-clean": "~0.4.0",
-        "grunt-contrib-qunit": "~0.2.0",
-        "grunt-bowerful": "~0.2.3",
-        "grunt-jsbeautifier": "git://github.com/mitermayer/grunt-jsbeautifier.git",
-        "grunt-jsdoc": "~0.3.2"
+        "grunt": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-concat": "*",
+        "grunt-contrib-nodeunit": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-clean": "*",
+        "grunt-contrib-qunit": "*",
+        "grunt-bowerful": "*",
+        "grunt-jsbeautifier": "*",
+        "grunt-jsdoc": "*"
     }
 }

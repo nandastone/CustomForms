@@ -259,7 +259,7 @@
                 input[i] = _input;
 
                 customEl[i] = $('#' + settings.classPrefix + _input.attr(
-                    "name") +
+                        "name") +
                     "-" + _input.val());
 
             }
@@ -285,7 +285,7 @@
 
             // checked stated should be a reflection of the input checked property
             strictEqual(input[i].prop('checked'), customEl[i].hasClass(
-                'checked'),
+                    'checked'),
                 'After initliazed, radios checked class should reflect on their relative inputs checked property.');
             strictEqual(customEl[i].hasClass('custom-radio'), true,
                 'Custom elment should have class custom-radio when initializing');
@@ -335,9 +335,9 @@
             classPrefix: 'custom-'
         },
         optVal = [
-                'default',
-                'foo',
-                'moo'
+            'default',
+            'foo',
+            'moo'
         ],
         attr = {
             name: 'something',
@@ -664,6 +664,7 @@
             element: input.get(0),
             force: true,
             validators: [
+
                 function(val) {
                     return val !== "dummy";
                 },
@@ -701,13 +702,13 @@
 
         textfield
             .bind("update", function() {
-            ok(true,
-                'Event save should be called when model is updated.');
-        })
+                ok(true,
+                    'Event save should be called when model is updated.');
+            })
             .bind("validate", function() {
-            ok(true,
-                'Event validation should be called when model is query for validation.');
-        }).update("bones");
+                ok(true,
+                    'Event validation should be called when model is query for validation.');
+            }).update("bones");
 
 
         textfield = customformsjs.module.Text({

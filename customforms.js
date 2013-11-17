@@ -8,32 +8,32 @@
      * Base class for all modules, it provides a link between the html element and
      * the model. It also implements custom events and validators.
      *
-     * @constructor  
-     * @name customformsjs.BaseField 
+     * @constructor
+     * @name customformsjs.BaseField
      * @param {Object} obj Options to initialize BaseField.
-     * @param {Object} obj.element Object that has an attribute 'value'. 
-     * @param {Array} obj.validators Field Validators. 
-     * @param {Array} obj.events Custom events. 
-     * @param {Function} obj.init Callback function to initialize subclass when BaseField is ready. 
+     * @param {Object} obj.element Object that has an attribute 'value'.
+     * @param {Array} obj.validators Field Validators.
+     * @param {Array} obj.events Custom events.
+     * @param {Function} obj.init Callback function to initialize subclass when BaseField is ready.
      * @example
-     * new APP.BaseField({ 
-     *     element: htmlelmenent, 
-     *     events: ["customEventNameSpace", { *         name: "otherCustomEventNamespace", 
+     * new APP.BaseField({
+     *     element: htmlelmenent,
+     *     events: ["customEventNameSpace", { *         name: "otherCustomEventNamespace",
      *         callback: function(event){
      *           // custom "otherCustomEventNamespace" event callback.
      *         }
-     *     }], 
+     *     }],
      *     validators: [{
      *         validator: function(value) {
-     *              return value === 'Dummy'; 
+     *              return value === 'Dummy';
      *         },
      *         message: "Value should be 'Dummy'"
-     *     }], 
+     *     }],
      *     init: function(){
      *         // this only gets fired after initialization has been completed.
      *         console.log("ready");
-     *     } 
-     * }); 
+     *     }
+     * });
      * @returns {Object} Returns an Object with some base methods.
      */
     APP.BaseField = function(obj) {
@@ -44,10 +44,10 @@
             _validators = [];
 
         /**
-         * Attach HTMLelement reference, and setup events and validators. 
+         * Attach HTMLelement reference, and setup events and validators.
          * Will call a callback function when it's done.
          *
-         * @function 
+         * @function
          * @memberof customformsjs.BaseField
          * @returns {Bool} Returns true with no error occur.
          */
@@ -111,8 +111,8 @@
          * Bind a callback to a custom event namespace, if the namespace doesn't
          * exists it will create one and add to it.
          *
-         * @function 
-         * @param {String} evnt Custom event name. 
+         * @function
+         * @param {String} evnt Custom event name.
          * @param {Function} func Callback function to be called when event is triggered.
          * @memberof customformsjs.BaseField
          * @returns {Object} Returns context for chaining.
@@ -126,10 +126,10 @@
         };
 
         /**
-         * Unbind the referenced function event from a custom event namespace. 
+         * Unbind the referenced function event from a custom event namespace.
          *
-         * @function 
-         * @param {String} evnt Custom event name. 
+         * @function
+         * @param {String} evnt Custom event name.
          * @param {Function} func Callback function reference.
          * @memberof customformsjs.BaseField
          * @returns {Object} Returns context for chaining.
@@ -149,7 +149,7 @@
          * Update value with a valid specified String. Triggers 'update' event, and send
          * the updated value as an event data attribute.
          *
-         * @function 
+         * @function
          * @param {String} val Value to update field.
          * @param {Bool} force If true, value will be updated regardless of validation.
          * @memberof customformsjs.BaseField
@@ -166,10 +166,10 @@
         };
 
         /**
-         * Update the related element with the value stored in this custom element. 
-         * Triggers 'save' event, and send the saved value as an event data attribute. 
+         * Update the related element with the value stored in this custom element.
+         * Triggers 'save' event, and send the saved value as an event data attribute.
          *
-         * @function 
+         * @function
          * @memberof customformsjs.BaseField
          * @returns {Object} Returns context for chaining.
          */
@@ -182,10 +182,10 @@
         };
 
         /**
-         * Update the custom element with the value stored in element. 
-         * Triggers 'sync' event, and send the syncd value as an event data attribute. 
+         * Update the custom element with the value stored in element.
+         * Triggers 'sync' event, and send the syncd value as an event data attribute.
          *
-         * @function 
+         * @function
          * @memberof customformsjs.BaseField
          * @returns {Object} returns context for chaining.
          */
@@ -202,7 +202,7 @@
          * Will return an Object with a property success and a property
          * message with an array of error messages.
          *
-         * @function 
+         * @function
          * @param {String} val  Value to be validated
          * @memberof customformsjs.BaseField
          * @returns {Object} Returns success status, and array of error messages.
@@ -231,13 +231,13 @@
         };
 
         /**
-         * Triggers an event from a particular event namespace. Will call 
+         * Triggers an event from a particular event namespace. Will call
          * all functions that are linked with that namespace with an Event Object.
-         * It will have a reference to the element, custom element, event 
-         * namespace, timestamp and data that can be passed on as part of the trigger. 
+         * It will have a reference to the element, custom element, event
+         * namespace, timestamp and data that can be passed on as part of the trigger.
          *
-         * @function 
-         * @param {String} evnt event namespace 
+         * @function
+         * @param {String} evnt event namespace
          * @param {Object} data data to be passed on as part of the event
          * @memberof customformsjs.BaseField
          * @returns {Object} returns context for chaining.
@@ -278,7 +278,7 @@
          * Module default settings.
          *
          * @constant
-         * @default 
+         * @default
          * @access private
          * @memberof customformsjs.module.Checkbox
          */
@@ -296,10 +296,10 @@
         };
 
     /**
-     * Add support for styling input checkbox fields. 
+     * Add support for styling input checkbox fields.
      * A custom element is added before the browser default input checkbox field,
-     * The valued is binded to the default browser checkbox field. When clicking on 
-     * the custom element they will updated the default input checkbox and vise versa. 
+     * The valued is binded to the default browser checkbox field. When clicking on
+     * the custom element they will updated the default input checkbox and vise versa.
      * Updates on the browser default field will also trigger updates on the custom input field.
      * Options can be passed to extend the defaults.
      *
@@ -322,8 +322,8 @@
      *      events: [], // custom events can be added.
      *      validators: [] // custom validators can be added.
      * };
-     * 
-     * customformsjs.module.Checkbox(DEFAULTS); 
+     *
+     * customformsjs.module.Checkbox(DEFAULTS);
      *
      * @returns {Object} Returns an Instance of module Checkbox.
      */
@@ -341,11 +341,11 @@
                     $customEl.addClass("focus");
                 })
                     .focusout(function() {
-                    $customEl.removeClass("focus");
-                })
+                        $customEl.removeClass("focus");
+                    })
                     .change(function() {
-                    instance.validate();
-                });
+                        instance.validate();
+                    });
 
                 $customEl.click(function(e) {
                     e.preventDefault();
@@ -364,12 +364,12 @@
             });
 
             /**
-             * Initializer for module. Will create custom elements and apply 
+             * Initializer for module. Will create custom elements and apply
              * default styles to it. Here will also be browser specific features.
-             * Checkbox module works by adding a custom element before the browser 
+             * Checkbox module works by adding a custom element before the browser
              * input checkbox form field and binding their values together. When updating
              * one the other will be updated.
-             * 
+             *
              * @function
              * @memberof customformsjs.module.Checkbox
              */
@@ -416,8 +416,8 @@
     };
 
     /**
-     * Blueprint used to allow custom field creation. 
-     * Element must be an object with a tagname 'input' with an attribute 'type' that 
+     * Blueprint used to allow custom field creation.
+     * Element must be an object with a tagname 'input' with an attribute 'type' that
      * has a value of 'checkbox'.
      *
      * @property {Object} customformsjs.module.Checkbox.blueprint used to see if element meet module requirements.
@@ -445,7 +445,7 @@
          * Module default settings.
          *
          * @constant
-         * @default 
+         * @default
          * @access private
          * @memberof customformsjs.module.File
          */
@@ -488,7 +488,7 @@
 
 
     /**
-     * Add support for styling input file fields. 
+     * Add support for styling input file fields.
      * A custom element is added behind the browser default input file field,
      * and the file field is made transparent to create the illusion of a
      * custom element. Options can be passed to extend the defaults.
@@ -536,8 +536,8 @@
      *      events: [], // custom events can be added.
      *      validators: [] // custom validators can be added.
      * };
-     * 
-     * customformsjs.module.File(DEFAULTS); 
+     *
+     * customformsjs.module.File(DEFAULTS);
      *
      * @returns {Object} Returns an Instance of module File.
      */
@@ -570,11 +570,11 @@
                     $customContainer.addClass("focus");
                 })
                     .focusout(function() {
-                    $customContainer.removeClass("focus");
-                })
+                        $customContainer.removeClass("focus");
+                    })
                     .change(function() {
-                    instance.validate();
-                });
+                        instance.validate();
+                    });
             };
 
         if (SETTINGS.active) {
@@ -582,11 +582,11 @@
             SETTINGS.validators = SETTINGS.validators || [];
 
             /**
-             * Initializer for module. Will create custom elements and apply 
+             * Initializer for module. Will create custom elements and apply
              * default styles to it. Here will also be browser specific features.
-             * File module works by adding a custom element behind the browser 
+             * File module works by adding a custom element behind the browser
              * input file form field and making it transparent. There is also some browser
-             * specifics to calculate the final size in order to be fully on top of the 
+             * specifics to calculate the final size in order to be fully on top of the
              * input file field.
              *
              * @function
@@ -659,8 +659,8 @@
     };
 
     /**
-     * Blueprint used to allow custom field creation. 
-     * Element must be an object with a tagname 'input' with an attribute 'type' that 
+     * Blueprint used to allow custom field creation.
+     * Element must be an object with a tagname 'input' with an attribute 'type' that
      * has a value of 'file'.
      *
      * @property {Object} customformsjs.module.File.blueprint used to see if element meet module requirements.
@@ -688,7 +688,7 @@
          * Module default settings.
          *
          * @constant
-         * @default 
+         * @default
          * @access private
          * @memberof customformsjs.module.Radio
          */
@@ -707,10 +707,10 @@
 
 
     /**
-     * Add support for styling input radio fields. 
+     * Add support for styling input radio fields.
      * A custom element is added before the browser default input radio field,
-     * The valued is binded to the default browser radio field. When clicking on 
-     * the custom element they will updated the default input radio and vise versa. 
+     * The valued is binded to the default browser radio field. When clicking on
+     * the custom element they will updated the default input radio and vise versa.
      * Updates on the browser default field will also trigger updates on the custom input field.
      * Options can be passed to extend the defaults.
      *
@@ -733,8 +733,8 @@
      *      events: [], // custom events can be added.
      *      validators: [] // custom validators can be added.
      * };
-     * 
-     * customformsjs.module.Radio(DEFAULTS); 
+     *
+     * customformsjs.module.Radio(DEFAULTS);
      *
      * @returns {Object} Returns an Instance of module Radio.
      */
@@ -754,11 +754,11 @@
                     $customEl.addClass("focus");
                 })
                     .focusout(function() {
-                    $customEl.removeClass("focus");
-                })
+                        $customEl.removeClass("focus");
+                    })
                     .change(function() {
-                    instance.validate();
-                });
+                        instance.validate();
+                    });
 
                 $customEl.click(function(e) {
                     e.preventDefault();
@@ -777,12 +777,12 @@
             });
 
             /**
-             * Initializer for module. Will create custom elements and apply 
+             * Initializer for module. Will create custom elements and apply
              * default styles to it. Here will also be browser specific features.
-             * Radio module works by adding a custom element before the browser 
+             * Radio module works by adding a custom element before the browser
              * input radio form field and binding their values together. When updating
              * one the other will be updated.
-             * 
+             *
              * @function
              * @memberof customformsjs.module.Radio
              */
@@ -809,7 +809,7 @@
 
             /**
              * Custom validator is added to uncheck all custom elements and default browser
-             * input radio form elements of a particular group and than than check the 
+             * input radio form elements of a particular group and than than check the
              * selected custom element and input radio form element. This way only a single
              * element of a group can be checked at a time.
              *
@@ -834,8 +834,8 @@
     };
 
     /**
-     * Blueprint used to allow custom field creation. 
-     * Element must be an object with a tagname 'input' with an attribute 'type' that 
+     * Blueprint used to allow custom field creation.
+     * Element must be an object with a tagname 'input' with an attribute 'type' that
      * has a value of 'radio'.
      *
      * @property {Object} customformsjs.module.Radio.blueprint used to see if element meet module requirements.
@@ -863,7 +863,223 @@
          * Module default settings.
          *
          * @constant
-         * @default 
+         * @default
+         * @access private
+         * @memberof customformsjs.module.Choice
+         */
+        DEFAULTS = {
+            active: false,
+            ready: function() {},
+            customEle: 'a',
+            containerEle: 'div',
+            autoHide: true,
+            classPrefix: 'custom-',
+            hideCss: {
+                opacity: '0',
+                filter: 'alpha(opacity=0)',
+                position: 'absolute',
+                top: '0px',
+                left: '0px',
+                '-moz-opacity': '0',
+                '-khtml-opacity': '0'
+            },
+            elCss: {
+                display: "block",
+                '-webkit-appearance': 'none',
+                '-moz-appearance': 'none'
+            },
+            customContainerCss: {
+                position: 'relative'
+            },
+            customElCss: {
+                display: "block",
+                overflow: "hidden",
+                'white-space': "nowrap",
+                'text-overflow': "ellipsis"
+            }
+        };
+
+
+    /**
+     * Add support for styling select fields.
+     * A custom element is added behind the browser default select field,
+     * and the select field is made transparent to create the illusion of a
+     * custom element. Options can be passed to extend the defaults.
+     *
+     * @module Choice
+     * @param {Object} obj Options to initialize Choice module.
+     * @name customformsjs.module.Choice
+     * @example
+     * var DEFAULTS = {
+     *      active: true, // active by default
+     *      ready: function() {}, // callback when module is ready.
+     *      customEle: 'a', // default element for handle.
+     *      containerEle: 'div', // default element for container.
+     *      autoHide: true, // will auto hide html element by default
+     *      classPrefix: 'custom-', // prefix used for class.
+     *      hideCss: { // styles can be overwritten or added.
+     *          opacity: '0',
+     *          filter: 'alpha(opacity=0)',
+     *          position: 'absolute',
+     *          top: '0px',
+     *          left: '0px',
+     *          '-moz-opacity': '0', *          '-khtml-opacity': '0'
+     *      },
+     *      elCss: { // styles can be overwritten or added.
+     *          display: "block",
+     *          '-webkit-appearance': 'none',
+     *          '-moz-appearance': 'none'
+     *      },
+     *      customContainerCss: { // styles can be overwritten or added.
+     *          position: 'relative'
+     *      },
+     *      customElCss: { // styles can be overwritten or added.
+     *          display: "block",
+     *          overflow: "hidden",
+     *          'white-space': "nowrap",
+     *          'text-overflow': "ellipsis"
+     *      },
+     *      element: obj, // select input field.
+     *      events: [], // custom events can be added.
+     *      validators: [] // custom validators can be added.
+     * };
+     *
+     * customformsjs.module.Choice(DEFAULTS);
+     *
+     * @returns {Object} Returns an Instance of module Choice.
+     */
+    module.Choice = function(obj) {
+
+        var instance = false;
+
+        var SETTINGS = obj ? $.extend(true, {}, DEFAULTS, obj) : DEFAULTS,
+            $el = $(SETTINGS.element),
+            $customEl = null,
+            $customContainer = null,
+            _id = DEFAULTS.classPrefix + ($el.attr('id') || $el.attr('name')),
+            _class = DEFAULTS.classPrefix + 'choice',
+            _containerClass = _class + '-container',
+            _size = {
+                width: 0,
+                height: 0
+            },
+
+            attachEvents = function() {
+                //$el.focusin(function() {
+                //    $customContainer.addClass("focus");
+                //})
+                //    .focusout(function() {
+                //    $customContainer.removeClass("focus");
+                //})
+                //    .change(function() {
+                //    instance.validate();
+                //});
+            };
+
+        if (SETTINGS.active) {
+
+            SETTINGS.validators = SETTINGS.validators || [];
+
+            /**
+             * Initializer for module. Will create custom elements and apply
+             * default styles to it. Here will also be browser specific features.
+             * Choice module works by adding a custom element behind the browser
+             * select form field and making it transparent.
+             *
+             * @function
+             * @memberof customformsjs.module.Choice
+             */
+            SETTINGS.init = function() {
+                // hide element
+                $el.css(DEFAULTS.hideCss);
+
+                // create custom element
+                $customContainer = $("<" + SETTINGS.containerEle + "/>");
+
+                // setup attr and styles to container
+                $customContainer.attr({
+                    id: _id + '-container',
+                    'class': _containerClass
+                }).css(SETTINGS.customContainerCss);
+
+                // create custom element
+                $customEl = $("<" + SETTINGS.customEle + "/>");
+
+                // setup attr and styles to custom element
+                $customEl.attr({
+                    id: _id,
+                    'class': _class
+                }).css(SETTINGS.customElCss);
+
+                // add container before element
+                $el.before($customContainer);
+
+                // move element inside container
+                $el.appendTo($customContainer);
+
+                // move custom element inside container
+                $customContainer.append($customEl);
+
+
+                // TODO: Create a list ul and append before $customEl with li matching the options on the select
+                // While doing that check for property 'selected' and 'value' and 'disabled' and do similar iplementation on those
+
+                // we than extend elCss with the dimensions and apply them to element.
+                $el.css($.extend({}, SETTINGS.elCss, _size));
+
+                SETTINGS.ready();
+            };
+
+            instance = new APP.BaseField(SETTINGS);
+
+            /**
+             * Custom validator is added to find wich option is selected and get its text value.
+             * Applying the option value the custom element as a text node.
+             *
+             * @function
+             * @memberof customformsjs.module.Choice
+             */
+            instance.bind('validate', function() {
+                //var _selectedText = $el.find('option:selected').text();
+
+                //_selectedText = _selectedText || $el.find('option').first().text();
+
+                //$customEl.html(_selectedText);
+            });
+
+            instance.validate();
+            attachEvents();
+
+        }
+
+        return instance;
+    };
+
+    /**
+     * Blueprint used to allow custom field creation.
+     * Element must be an object with a tagname 'select'
+     *
+     * @property {Object} blueprint used to see if element meet module requirements.
+     * @memberof customformsjs.module.Choice
+     */
+    module.Choice.blueprint = {
+        tagName: 'select'
+    };
+
+}(this));
+
+(function(global) {
+
+    "use strict";
+
+    var APP = global.customformsjs = global.customformsjs || {},
+        module = APP.module = APP.module || {},
+
+        /**
+         * Module default settings.
+         *
+         * @constant
+         * @default
          * @access private
          * @memberof customformsjs.module.Select
          */
@@ -901,7 +1117,7 @@
 
 
     /**
-     * Add support for styling select fields. 
+     * Add support for styling select fields.
      * A custom element is added behind the browser default select field,
      * and the select field is made transparent to create the illusion of a
      * custom element. Options can be passed to extend the defaults.
@@ -943,8 +1159,8 @@
      *      events: [], // custom events can be added.
      *      validators: [] // custom validators can be added.
      * };
-     * 
-     * customformsjs.module.Select(DEFAULTS); 
+     *
+     * customformsjs.module.Select(DEFAULTS);
      *
      * @returns {Object} Returns an Instance of module Select.
      */
@@ -969,11 +1185,11 @@
                     $customContainer.addClass("focus");
                 })
                     .focusout(function() {
-                    $customContainer.removeClass("focus");
-                })
+                        $customContainer.removeClass("focus");
+                    })
                     .change(function() {
-                    instance.validate();
-                });
+                        instance.validate();
+                    });
             };
 
         if (SETTINGS.active) {
@@ -981,9 +1197,9 @@
             SETTINGS.validators = SETTINGS.validators || [];
 
             /**
-             * Initializer for module. Will create custom elements and apply 
+             * Initializer for module. Will create custom elements and apply
              * default styles to it. Here will also be browser specific features.
-             * Select module works by adding a custom element behind the browser 
+             * Select module works by adding a custom element behind the browser
              * select form field and making it transparent.
              *
              * @function
@@ -1057,7 +1273,7 @@
     };
 
     /**
-     * Blueprint used to allow custom field creation. 
+     * Blueprint used to allow custom field creation.
      * Element must be an object with a tagname 'select'
      *
      * @property {Object} blueprint used to see if element meet module requirements.
@@ -1080,7 +1296,7 @@
          * Module default settings.
          *
          * @constant
-         * @default 
+         * @default
          * @access private
          * @memberof customformsjs.module.Text
          */
@@ -1118,8 +1334,8 @@
      *      events: [], // custom events can be added.
      *      validators: [] // custom validators can be added.
      * };
-     * 
-     * customformsjs.module.Text(DEFAULTS); 
+     *
+     * customformsjs.module.Text(DEFAULTS);
      *
      * @returns {Object} Returns an Instance of module Text.
      */
@@ -1165,15 +1381,15 @@
                         });
                     })
                         .focusout(function() {
-                        $(this).removeClass('focus');
-                        addPlaceholder();
-                    })
+                            $(this).removeClass('focus');
+                            addPlaceholder();
+                        })
                         .closest('form')
                         .bind('submit', function() {
-                        validationFailProxy(function() {
-                            clearText();
+                            validationFailProxy(function() {
+                                clearText();
+                            });
                         });
-                    });
                 };
 
             // only initialize the module if the is a placeholder attribute on the input
@@ -1189,7 +1405,7 @@
                  * Initializer for module. Will mimic default browser placeholder by
                  * applying a placeholder when input have an invalid field. This can be used
                  * in conjuction of custom validators.
-                 * 
+                 *
                  * @function
                  * @memberof customformsjs.module.Text
                  */
@@ -1221,8 +1437,8 @@
     };
 
     /**
-     * Blueprint used to allow custom field creation. 
-     * Element must be an object with a tagname 'input' with an attribute 'type' that 
+     * Blueprint used to allow custom field creation.
+     * Element must be an object with a tagname 'input' with an attribute 'type' that
      * has a value of ('text', 'search', 'tel', 'url', 'email', 'password') field.
      *
      * @property {Object} customformsjs.module.Text.blueprint used to see if element meet module requirements.
@@ -1246,20 +1462,20 @@
      * @name customformsjs
      * @example
      * // You can overwrite defaults by passing an object with some options, when an option is passed
-     * // without a module name as namespace it will be a global option, module namespaced options will 
+     * // without a module name as namespace it will be a global option, module namespaced options will
      * // overwrite global options, also modules will have some options that are particular for that module,
      * // please refer to the documentation page to see all possible options for each module.
      *  var options = { active: true, lowercasemodulename: { active: false } };
-     *  
+     *
      *  // All supported elements inside container, will recurse to find all elements
-     *  $('#container').cstmForm( options ) 
+     *  $('#container').cstmForm( options )
      *
      *  // All Form elements
-     *  $('form').cstmForm( options ) 
+     *  $('form').cstmForm( options )
      *
-     *  // target a certain group of element 
+     *  // target a certain group of element
      *  $('input[type=file]').cstmForm( options )
-     * 
+     *
      *  // You can target specific groups of elements
      *  $('input[type=radio], input[type=checkbox], select').cstmForm( options )
      */
